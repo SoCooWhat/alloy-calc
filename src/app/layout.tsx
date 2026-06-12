@@ -1,8 +1,5 @@
-import { Inter } from 'next/font/google'
 import './globals.css'
 import { AntdProvider } from '@/components/providers/AntdProvider'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: '钛镁铝合金算料系统',
@@ -16,7 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="zh-CN">
-      <body className={inter.className}>
+      <body>
         <AntdProvider>
           {children}
         </AntdProvider>
