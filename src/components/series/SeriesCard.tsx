@@ -25,7 +25,7 @@ export function SeriesCard({ series, onEdit, onDelete, onClick }: SeriesCardProp
           title="确认删除此系列？"
           description="删除后无法恢复"
           onConfirm={(e) => { e?.stopPropagation(); onDelete(series.id); }}
-          onCancel={(e) => e?.stop.stopPropagation()}
+          onCancel={(e) => e?.stopPropagation()}
         >
           <DeleteOutlined onClick={(e) => e.stopPropagation()} />
         </Popconfirm>,

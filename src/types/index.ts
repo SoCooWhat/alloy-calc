@@ -56,6 +56,48 @@ export interface Customer {
   created_at?: string;
 }
 
+// ==================== 快捷模板 ====================
+
+export interface Template {
+  id: string;
+  name: string;
+  product_type: string;
+  description: string;
+  status: number;
+  usage_count?: number;
+  parts?: TemplatePart[];
+  accessories?: TemplateAccessory[];
+  created_by?: string;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface TemplatePart {
+  id: string;
+  template_id: string;
+  part_name: string;
+  material_id: string;
+  material?: Material;
+  formula_type: FormulaType;
+  cut_rule_type: CutRuleType;
+  cut_rule_value: string;
+  qty_per_unit: number;
+  remark: string;
+  sort_order: number;
+  created_at?: string;
+}
+
+export interface TemplateAccessory {
+  id: string;
+  template_id: string;
+  accessory_id: string;
+  accessory?: Accessory;
+  category: string;
+  calc_rule: string;
+  calc_desc: string;
+  created_at?: string;
+}
+
 // ==================== 型材系列（V2 核心） ====================
 
 export interface Series {
@@ -84,8 +126,8 @@ export interface SeriesGroup {
 }
 
 export interface SeriesPart {
-  id: string;
-  group_id: string;
+  id?: string;
+  group_id?: string;
   part_name: string;
   material_id: string;
   material?: Material;
@@ -197,6 +239,7 @@ export interface BarLayout {
 export interface ProfileCalcResult {
   material_id: string;
   material_name: string;
+  part_name?: string;
   group_name: string;
   total_segments: number;
   cut_length: number;
