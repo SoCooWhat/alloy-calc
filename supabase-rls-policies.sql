@@ -23,7 +23,7 @@ CREATE POLICY "Allow all on series_groups" ON series_groups FOR ALL USING (true)
 
 -- ==================== series_parts ====================
 ALTER TABLE series_parts ENABLE ROW LEVEL SECURITY;
-CREATE POLICY "Allow all on series_parts" ON series_parts FOR ALL USING (true) WITH CHECK (true);
+CREATE POLICY "Allow all on series_parts" ON series_parts FOR ALL USING (true) WITH CHECK (true);~
 
 -- ==================== series_accessories ====================
 ALTER TABLE series_accessories ENABLE ROW LEVEL SECURITY;
