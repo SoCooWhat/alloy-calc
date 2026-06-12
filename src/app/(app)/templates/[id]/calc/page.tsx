@@ -5,7 +5,6 @@ import { useParams, useRouter } from 'next/navigation';
 import {
   Card,
   Typography,
-  Form,
   InputNumber,
   Button,
   Space,
@@ -18,7 +17,6 @@ import {
 } from 'antd';
 import {
   HomeOutlined,
-  FileTextOutlined,
   CalculatorOutlined,
   PlusOutlined,
   DeleteOutlined,
@@ -27,7 +25,6 @@ import {
 import { useTemplateStore } from '@/stores/templateStore';
 import { useCalcStore } from '@/stores/calcStore';
 import { CalcResultArea } from '@/components/calc/CalcResultArea';
-import { CreateOrderModal } from '@/components/order/CreateOrderModal';
 import type { SizeSpec } from '@/types';
 import type { ColumnsType } from 'antd/es/table';
 
@@ -42,7 +39,6 @@ export default function CalcPage() {
   const [sizeSpecs, setSizeSpecs] = useState<SizeSpec[]>([
     { width: 1000, height: 1500, qty: 10 },
   ]);
-  const [showOrderModal, setShowOrderModal] = useState(false);
 
   useEffect(() => {
     if (templateId) {
@@ -85,18 +81,6 @@ export default function CalcPage() {
     if (!useCalcStore.getState().error) {
       message.success('计算完成');
     }
-  };
-
-  const handleCreateOrder = () => {
-    if (!result) {
-      message.error('请先进行算料计算');
-      return;
-    }
-    setShowOrderModal(true);
-  };
-
-  const handleCloseOrderModal = () => {
-    setShowOrderModal(false);
   };
 
   const specColumns: ColumnsType<SizeSpec & { index: number }> = [
@@ -267,20 +251,7 @@ export default function CalcPage() {
       </Card>
 
       {/* 计算结果 */}
-      <CalcResultArea onCreateOrder={handleCreateOrder} />
-
-      {/* 创建订单弹窗 */}
-      {result && currentTemplate && (
-        <CreateOrderModal
-          open={showOrderModal}
-          onClose={handleCloseOrderModal}
-          calcResult={result}
-          templateId={templateId}
-          templateName={currentTemplate.name}
-          productType={currentTemplate.product_type}
-          sizeSpecs={sizeSpecs}
-        />
-      )}
+      <CalcResultArea />
     </div>
   );
 }
