@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { runCalculation, previewCalculation } from '@/lib/calc';
 import type { CalcRequest } from '@/lib/calc';
 
+export const runtime = 'edge';
+
 export async function POST(request: NextRequest) {
   try {
     const body: CalcRequest & { preview?: boolean } = await request.json();
